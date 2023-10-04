@@ -3,3 +3,33 @@
   margin: 0;
   padding: 0;
 }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  
+}
+.container{
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 10px 15px;
+  background: teal;
+}
+.form{
+  display: flex;
+  justify-content: center;
+}
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.tasks{
+  display: flex;
+  gap: 15px;
+}
