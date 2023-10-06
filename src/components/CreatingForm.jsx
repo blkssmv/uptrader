@@ -6,47 +6,61 @@ import { v4 } from 'uuid';
 
 const CreatingForm = ({tasks, setTasks}) => {
 
+    const { id } = useParams()
+
     const [task, setTask] = useState({
-        id: "",
-        name: "",
+        id: v4,
+        title: "",
+        subtitle: "",
         status: "queue",
-        project_id: ""
+        project_id: id
       })
-      const { id } = useParams()
+      
 
       const handleSubmit = (e) => {
         e.preventDefault()
 
-        if(task.name.length < 3){
-            return toast.error("Minimum length of project name must not be less than 3")
-            
+        if(task.title.length < 3 || task.subtitle.length < 3){
+            return toast.error("Minimum length of project title must not be less than 3")
         }
 
         setTasks((prev) => {
-            const list = [...prev, task]
+            const list = [...(prev || []), task]
             localStorage.setItem("tasks", JSON.stringify(list))
             return list
         })
 
         toast.success("Success")
-        setTask({name: "", id: ""})
+        setTask({title: "", id: "", status: "queue", subtitle: ""})
       }
     
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{display: "flex", gap: "10px", width: "50%"}}>
             <input 
+            style={{padding: "8px 12px", borderRadius: "7px", border: "1px solid #000", width: "100%"}}
                 type="text" 
                 onChange={(e) => {
                     setTask({
                         ...task,
-                        id: v4(),
-                        name: e.target.value,
-                        project_id: id
+                        title: e.target.value,
                     })
                 }}
-                value={task.name}
+                placeholder='title'
+                value={task.title}
             />
-            <button>Create task</button>
+            <input 
+            style={{padding: "8px 12px", borderRadius: "7px", border: "1px solid #000", width: "100%"}}
+                type="text" 
+                placeholder='subtitle'
+                onChange={(e) => {
+                    setTask({
+                        ...task,
+                        subtitle: e.target.value,
+                    })
+                }}
+                value={task.subtitle}
+            />
+            <button style={{background: "green", padding: "5px 10px", color: "#FFF", borderRadius: "7px", border: "none", cursor: "pointer", width: "100%" }} >Create task</button>
         </form>
     );
 };

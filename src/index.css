@@ -17,19 +17,21 @@ body {
   max-width: 1440px;
   margin: 0 auto;
   padding: 10px 15px;
-  background: teal;
-}
-.form{
-  display: flex;
-  justify-content: center;
 }
 .main{
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 .tasks{
   display: flex;
-  gap: 15px;
+  width: 100%;
+  gap: 50px;
+}
+a{
+  color: red;
+  text-decoration: none;
+}
+ol {
+  list-style-position: inside;
+  padding: 0;
 }
